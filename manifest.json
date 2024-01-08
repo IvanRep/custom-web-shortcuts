@@ -25,6 +25,13 @@
                 "mac": "Command+Left"
             },
             "description": "Go to previous chapter."
+        },
+        "player-load": {
+            "suggested_key": {
+                "default": "Ctrl+Space",
+                "mac": "Command+Space"
+            },
+            "description": "Load the player."
         }
     }
    

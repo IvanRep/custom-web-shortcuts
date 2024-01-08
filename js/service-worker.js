@@ -1,26 +1,26 @@
 chrome.commands.onCommand.addListener((command) => {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         
-        console.log(`Command: ${command}, Tab: ${tabs[0].id}`);
-        if (command === "next-chapter") {
-            chrome.scripting.executeScript({
-                target: {tabId: tabs[0].id},
-                func: nextChapter,
-                args: ['action'],
-            });
+        let functionWrapper = null;
+        switch(command){
+            case "player-load":
+                functionWrapper = loadPlayer;
+                break;
+            case "prev-chapter":
+                functionWrapper = previousChapter;
+                break;
+            case "next-chapter":
+                functionWrapper = nextChapter;
+                break;
+            default:
+                alert("Unimplemented command: " + command);
+                break;
         }
-
-        if (command === "prev-chapter") {
-            chrome.scripting.executeScript({
-                target: {tabId: tabs[0].id},
-                func: previousChapter,
-                args: ['action'],
-            });
-        }
-
+        chrome.scripting.executeScript({
+            target: {tabId: tabs[0].id},
+            func: functionWrapper
+        })
     })
-   
-    
 })
 
 function nextChapter() {
@@ -49,10 +49,15 @@ function previousChapter() {
         }
         return xpath;
     }
-    
+
     const expr = xpathPrepare(`//a[contains(translate(., '$u0', '$l0'), '$s0') or contains(translate(., '$u1', '$l1'), '$s1') or contains(translate(., '$u2', '$l2'), '$s2')]
                             | button[contains(translate(., '$u0', '$l0'), '$s0') or contains(translate(., '$u1', '$l1'), '$s1') or contains(translate(., '$u2', '$l2'), '$s2')]
                             | input[contains(translate(., '$u0', '$l0'), '$s0') or contains(translate(., '$u1', '$l1'), '$s1') or contains(translate(., '$u2', '$l2'), '$s2')]`, 
                             ["prev","anterior","previo"]);
     document.evaluate(expr, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+}
+
+function loadPlayer() {
+    const player = document.getElementById("videoLoading")
+    player.click();
 }
