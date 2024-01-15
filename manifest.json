@@ -11,6 +11,9 @@
     },
     "permissions": ["<all_urls>", "tabs" ,"activeTab", "scripting"],
     "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
     "commands": {
         "next-chapter": {
             "suggested_key": {
