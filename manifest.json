@@ -1,41 +1,74 @@
 {
-    "name": "go through the chapters",
-    "version": "0.0.0.1",
-    "manifest_version": 3,
-    "description": "An extension to go through the chapters in some webpages.",
-    "icons": {
-        "128": "icons/arrows.png"
-    },
-    "background": {
-        "service_worker": "js/service-worker.js"
-    },
-    "permissions": ["<all_urls>", "tabs" ,"activeTab", "scripting"],
-    "host_permissions": ["<all_urls>"],
-    "action": {
-        "default_popup": "popup/popup.html"
-    },
-    "commands": {
-        "next-chapter": {
-            "suggested_key": {
-                "default": "Ctrl+Right",
-                "mac": "Command+Right"
-            },
-            "description": "Go to next chapter."
-        },
-        "prev-chapter":  {
-            "suggested_key": {
-                "default": "Ctrl+Left",
-                "mac": "Command+Left"
-            },
-            "description": "Go to previous chapter."
-        },
-        "player-load": {
-            "suggested_key": {
-                "default": "Ctrl+Space",
-                "mac": "Command+Space"
-            },
-            "description": "Load the player."
-        }
+  "name": "go through the chapters",
+  "version": "0.0.0.1",
+  "manifest_version": 3,
+  "description": "An extension to go through the chapters in some webpages.",
+  "icons": {
+    "128": "icons/arrows.png"
+  },
+  "background": {
+    "service_worker": "js/service-worker.js"
+  },
+  "permissions": ["tabs", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/content.js"]
     }
-   
+  ],
+  "commands": {
+    "next-chapter": {
+      "suggested_key": {
+        "default": "Ctrl+Right",
+        "mac": "Command+Right"
+      },
+      "description": "Go to next chapter."
+    },
+    "prev-chapter": {
+      "suggested_key": {
+        "default": "Ctrl+Left",
+        "mac": "Command+Left"
+      },
+      "description": "Go to previous chapter."
+    },
+    "player-load": {
+      "suggested_key": {
+        "default": "Ctrl+Space",
+        "mac": "Command+Space"
+      },
+      "description": "Load the player."
+    },
+    "hotkey-4": {
+      "suggested_key": {
+        "default": "Ctrl+Space",
+        "mac": "Command+Space"
+      },
+      "description": "Hotkey 4."
+    },
+    "hotkey-5": {
+      "description": "Hotkey 5."
+    },
+    "hotkey-6": {
+      "description": "Hotkey 6."
+    },
+    "hotkey-7": {
+      "description": "Hotkey 7."
+    },
+    "hotkey-8": {
+      "description": "Hotkey 8."
+    },
+    "hotkey-9": {
+      "description": "Hotkey 9."
+    },
+    "hotkey-10": {
+      "description": "Hotkey 10."
+    },
+    "hotkey-11": {
+      "description": "Hotkey 11."
+    }
+  }
 }
