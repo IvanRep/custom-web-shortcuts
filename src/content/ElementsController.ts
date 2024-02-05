@@ -43,17 +43,17 @@ export default class ElementController {
   }
 
   private selectTarget(event) {
-    this.preventDef(event);
+    () => this.preventDef(event);
     event.currentTarget.style.outline = "solid 3px red";
   }
 
   private removeTarget(event) {
-    this.preventDef(event);
+    () => this.preventDef(event);
     event.currentTarget.style.outline = "none";
   }
 
   private clickTarget(event) {
-    this.preventDef(event);
+    () => this.preventDef(event);
     event.currentTarget.style.outline = "solid 3px green";
 
     console.log(event.currentTarget);
