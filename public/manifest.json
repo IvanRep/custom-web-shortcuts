@@ -1,23 +1,28 @@
 {
-  "name": "go through the chapters",
-  "version": "0.0.0.1",
+  "name": "Custom Web Shortcuts",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "description": "__MSG_description__",
   "manifest_version": 3,
-  "description": "An extension to go through the chapters in some webpages.",
   "icons": {
     "128": "icons/arrows.png"
   },
-  "background": {
-    "service_worker": "js/service-worker.js"
-  },
-  "permissions": ["tabs", "activeTab", "scripting"],
-  "host_permissions": ["<all_urls>"],
   "action": {
+    "default_icon": {
+      "128": "icons/arrows.png"
+    },
+    "default_title": "Custom Web Shortcuts",
     "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "service_worker": "background/background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content-scripts/content.js"]
+      "all_frames": true,
+      "js": ["content/content.js"],
+      "run_at": "document_start"
     }
   ],
   "commands": {
@@ -70,5 +75,7 @@
     "hotkey-11": {
       "description": "Hotkey 11."
     }
-  }
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"]
 }
